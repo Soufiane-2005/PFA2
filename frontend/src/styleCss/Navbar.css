@@ -1,0 +1,49 @@
+.Navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #e7e5e5;
+    color: white;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ 
+
+  }
+  
+  .something {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .something div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .something img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .something h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
+  .something span {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .Navbar-container h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  

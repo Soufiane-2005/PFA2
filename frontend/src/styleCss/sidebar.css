@@ -1,0 +1,76 @@
+.sideBarAdmin {
+    font-size: 1.5vw;
+    background-color: rgb(195, 197, 197);
+    margin: 0;
+    height: 100vh;
+    text-align: center;
+    color: black;
+    width: 30vw;
+    min-width: 250px;
+    max-width: 400px;
+    padding: 2vh 1vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Image de profil */
+.profile-img {
+    width: 60%;
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    margin: 2vh auto;
+    display: block;
+}
+
+/* Conteneur des deux boutons */
+.sideBarAdmin .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3vh;
+}
+
+/* Styles des boutons */
+.sideBarAdmin button {
+    font-size: 1vw;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #004080;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    min-width: 100px;
+}
+
+.sideBarAdmin button:hover {
+    background-color: #0059b3;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .sideBarAdmin {
+        width: 90vw;
+        font-size: 4vw;
+    }
+
+    .profile-img {
+        width: 50%;
+    }
+
+    .sideBarAdmin button {
+        font-size: 3vw;
+        padding: 8px 10px;
+    }
+
+    .sideBarAdmin .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

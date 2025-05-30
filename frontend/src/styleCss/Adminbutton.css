@@ -1,0 +1,59 @@
+.admin-button-container {
+    text-align: center;
+    padding-left: 10% ;
+    padding-top: 10%;
+    
+}
+
+.admin-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: #222;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    justify-items: center;
+}
+
+.btn {
+    width: 250px;
+    height: 120px;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-enseignant {
+    background-color: #007BFF;
+}
+
+.btn-classe {
+    background-color: #28A745;
+}
+
+.btn-alerts {
+    background-color: #FFC107;
+    color: black;
+}
+
+.btn-notifs {
+    background-color: #DC3545;
+}
+
+.btn-enseignements {
+    background-color: #dc3586;
+    position: relative;
+    left: 150px;
+}

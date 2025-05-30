@@ -1,0 +1,54 @@
+body {
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+    justify-content: flex-start; /* Start from the top */
+    gap: 20px; /* Space between title and alerts */
+    width: 50%; /* Set a fixed width for the container */
+    margin-top: 50px;
+}
+
+.alert {
+    border: 1px solid black;
+    width: 40%; /* Alerts take the full width of the container */
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    position: relative;
+    left: 300px;
+    
+
+}
+
+h1 {
+    margin: 10px; /* Remove default margin on the title */
+}
+
+
+.envoyeur img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.envoyeur{
+    display: flex;
+    gap: 10px;
+    
+}
+.envoyeur h3{
+    position: relative;
+    top: 10px;
+    color: rgb(66, 66, 66);
+}

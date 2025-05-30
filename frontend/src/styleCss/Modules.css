@@ -1,0 +1,44 @@
+
+
+
+.modules-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.module-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.module-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.module-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.module-form button {
+    padding: 10px;
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.module-form button:hover {
+    background-color: #357ab8;
+}
