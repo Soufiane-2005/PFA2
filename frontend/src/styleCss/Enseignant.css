@@ -1,51 +1,112 @@
-.form-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
+/* modifierinfo.css */
+
+.modifier-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
     border-radius: 12px;
-    background-color: #f5f7fa;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form-title {
+.modifier-container h1 {
+    color: #2c3e50;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
-.form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.button-group {
+.modifier-form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.button-group button {
-    flex: 1;
-    margin: 0 5px;
-    padding: 10px 0;
-    background-color: #007bff;
+.modifier-form label {
+    font-weight: 500;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.modifier-form select,
+.modifier-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.modifier-form select:focus,
+.modifier-form input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    background-color: #fff;
+}
+
+.modifier-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.modifier-form button {
+    background-color: #3498db;
     color: white;
     border: none;
+    padding: 1rem 1.5rem;
     border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.button-group button:hover {
-    background-color: #0056b3;
+.modifier-form button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(41, 128, 185, 0.3);
+}
+
+/* Style pour les différents types d'actions */
+.modifier-form .action-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3498db;
+}
+
+/* Animation pour le changement entre les actions */
+.modifier-form .action-transition {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .modifier-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .modifier-container h1 {
+        font-size: 1.5rem;
+    }
 }

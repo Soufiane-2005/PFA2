@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { google } = require('googleapis');
+require('dotenv').config();
 
 const auth = new google.auth.GoogleAuth({
   keyFile: 'apiKey.json', // Ton fichier JSON du compte de service
@@ -9,16 +10,16 @@ const auth = new google.auth.GoogleAuth({
 const driveService = google.drive({ version: 'v3', auth });
 
 // Ton dossier Drive public partagé (copié depuis Google Drive)
-const FOLDER_ID = '12nGXp6ys7TtAJiXAhCqKyAngjvaZScX4';
+const FOLDER_ID = process.env.FOLDER_ID;
 
-async function uploadFileToDrive(filePath, fileName) {
+async function uploadFileToDrive(filePath, fileName, mimeType) {
   const fileMetadata = {
     name: fileName,
     parents: [FOLDER_ID], // Ajout au dossier Google Drive spécifique
   };
 
   const media = {
-    mimeType: 'application/pdf',
+    mimeType: mimeType,
     body: fs.createReadStream(filePath),
   };
 

@@ -1,0 +1,223 @@
+.notif-main-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notif-main-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.notif-mode-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.notif-mode-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #f7fafc;
+  color: #4a5568;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.notif-mode-btn:hover {
+  background-color: #edf2f7;
+}
+
+.notif-mode-active {
+  background-color: #4299e1;
+  color: white;
+}
+
+.notif-btn-icon {
+  margin-right: 0.5rem;
+}
+
+.notif-form-container {
+  margin-bottom: 2rem;
+}
+
+.notif-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.notif-form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.notif-form-input,
+.notif-form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.notif-form-input:focus,
+.notif-form-textarea:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.notif-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.notif-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notif-submit-btn:hover {
+  background-color: #3182ce;
+}
+
+.notif-list-container {
+  margin-top: 2rem;
+}
+
+.notif-list-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+}
+
+.notif-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.notif-card:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.notif-card-message {
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.notif-card-date {
+  font-size: 0.875rem;
+  color: #718096;
+  margin-bottom: 1rem;
+}
+
+.notif-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.notif-action-btn {
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notif-action-delete {
+  color: #e53e3e;
+}
+
+.notif-action-delete:hover {
+  background-color: #fff5f5;
+}
+
+.notif-action-edit {
+  color: #4299e1;
+}
+
+.notif-action-edit:hover {
+  background-color: #ebf8ff;
+}
+
+.notif-edit-container {
+  margin-bottom: 1rem;
+}
+
+.notif-edit-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  min-height: 100px;
+}
+
+.notif-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.notif-edit-submit,
+.notif-edit-cancel {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notif-edit-submit {
+  background-color: #48bb78;
+  color: white;
+}
+
+.notif-edit-submit:hover {
+  background-color: #38a169;
+}
+
+.notif-edit-cancel {
+  background-color: #a0aec0;
+  color: white;
+}
+
+.notif-edit-cancel:hover {
+  background-color: #718096;
+}
+
+.notif-empty-message {
+  text-align: center;
+  color: #718096;
+  padding: 2rem 0;
+}

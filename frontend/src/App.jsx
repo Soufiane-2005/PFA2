@@ -15,6 +15,9 @@ import { Modules } from '../pages/Admin/Modules'
 import { UserAlerts } from '../pages/Users/UserAlerts'
 import {UserNotifications} from '../pages/Users/UserNotifications'
 import { Enseignement } from '../pages/Admin/Enseignement'
+import { Profiling } from '../pages/Profiling'
+import { Chatbot } from '../pages/Users/Chatbot'
+import { Quiz } from '../pages/Quiz'
 
 
 function App() {
@@ -70,6 +73,20 @@ function App() {
 
             <Route path='/dashboard/User-notifications' element={<ProtectedRoute allowedRoles={['enseignant', 'etudiant']}>
             <UserNotifications/>
+            </ProtectedRoute>}></Route>
+
+
+            <Route path='/dashboard/profiling/:moduleNom/:module_id' element={<ProtectedRoute allowedRoles={['etudiant']}>
+            <Profiling/>
+            </ProtectedRoute>}></Route>
+
+
+            <Route path='/dashboard/quiz/:pdf' element={<ProtectedRoute allowedRoles={['etudiant']}>
+            <Quiz/>
+            </ProtectedRoute>}></Route>
+
+            <Route path="/dashboard/chatbot" element={<ProtectedRoute allowedRoles={['etudiant', 'enseignant']}>
+            <Chatbot/>
             </ProtectedRoute>}></Route>
 
 

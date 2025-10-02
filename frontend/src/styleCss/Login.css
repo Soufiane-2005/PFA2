@@ -1,28 +1,365 @@
-.form-container{
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(255, 252, 252);
-    margin: 0px;
+
+/* styleCss/Login.css */
+
+:root {
+    --primary: #4361ee;
+    --primary-light: #4cc9f0;
+    --secondary: #3a0ca3;
+    --accent: #7209b7;
+    --text: #2b2d42;
+    --light-text: #6c757d;
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+    --border: #e9ecef;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-page-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    background: var(--light-bg);
+}
+
+/* Hero Section */
+.login-image-section {
+    flex: 1;
+    background: url('/e-learning.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.login-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9));
+}
+
+.login-image-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    max-width: 600px;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Logo Animation */
+.platform-logo {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.logo-letter {
+    display: inline-block;
+    position: relative;
+    color: var(--white);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transform: translateY(0);
+    animation: floatLetters 3s ease-in-out infinite;
+}
+
+.logo-space {
+    width: 15px;
+}
+
+@keyframes floatLetters {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.platform-logo .logo-letter:nth-child(1) { animation-delay: 0s; color: #4cc9f0; }
+.platform-logo .logo-letter:nth-child(2) { animation-delay: 0.1s; }
+.platform-logo .logo-letter:nth-child(3) { animation-delay: 0.2s; color: #f72585; }
+.platform-logo .logo-letter:nth-child(4) { animation-delay: 0.3s; }
+.platform-logo .logo-letter:nth-child(5) { animation-delay: 0.4s; color: #4cc9f0; }
+.platform-logo .logo-letter:nth-child(7) { animation-delay: 0.5s; color: #f72585; }
+.platform-logo .logo-letter:nth-child(8) { animation-delay: 0.6s; }
+.platform-logo .logo-letter:nth-child(9) { animation-delay: 0.7s; }
+.platform-logo .logo-letter:nth-child(10) { animation-delay: 0.8s; color: #4cc9f0; }
+.platform-logo .logo-letter:nth-child(11) { animation-delay: 0.9s; }
+.platform-logo .logo-letter:nth-child(12) { animation-delay: 1s; color: #f72585; }
+
+/* Hero Text */
+.hero-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.7s forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animated Dots */
+.animated-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 3rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 1; background: var(--white); }
+}
+
+/* Form Section */
+.login-form-section {
+    flex: 1;
+    display: flex;
     align-items: center;
-    
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
 }
 
+.login-form-wrapper {
+    width: 100%;
+    max-width: 450px;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
 
-.form-container form{
-    background-color: rgba(209, 203, 203, 0.626);
-    min-width: 20%;
+.login-form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+}
+
+.form-header {
     text-align: center;
-    padding: 25px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.552);
-    border-radius: 10px;
-
-
-
+    margin-bottom: 2.5rem;
 }
 
-.form-button {
-    padding: 5px;
+.form-icon {
+    width: 50px;
+    height: 50px;
+    fill: var(--primary);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.form-title {
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    color: var(--light-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.elegant-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+    position: relative;
+}
+
+.input-container {
+    position: relative;
+}
+
+.elegant-input {
+    width: 100%;
+    padding: 16px 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.elegant-input:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+}
+
+.elegant-input::placeholder {
+    color: var(--light-text);
+    opacity: 0.7;
+}
+
+.input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    transition: var(--transition);
+}
+
+.elegant-input:focus ~ .input-border {
+    width: 100%;
+}
+
+/* Button */
+.elegant-button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-top: 1rem;
+}
+
+.elegant-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.button-hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.elegant-button:hover .button-hover-effect {
+    left: 0;
+}
+
+.elegant-button:hover {
+    box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.form-footer {
+    text-align: center;
+    color: var(--light-text);
+    margin-top: 2rem;
+    font-size: 0.95rem;
+}
+
+.elegant-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+}
+
+.elegant-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: var(--transition);
+}
+
+.elegant-link:hover::after {
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .platform-logo {
+        font-size: 2.8rem;
+    }
     
+    .hero-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-page-container {
+        flex-direction: column;
+    }
+    
+    .login-image-section {
+        padding: 3rem 1.5rem;
+        min-height: 40vh;
+    }
+    
+    .login-form-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .platform-logo {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .login-form-wrapper {
+        padding: 2rem;
+    }
 }

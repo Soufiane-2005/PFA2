@@ -1,6 +1,7 @@
 import '../../src/styleCss/Enseignement.css';
 import { useState, useEffect } from 'react';
 import { apiRequest } from '../../utils/fetchapi';
+import '../../src/styleCss/Enseignement.css'
 
 export function Enseignement() {
     const [enseignants, setEnseignants] = useState([]);
@@ -15,7 +16,7 @@ export function Enseignement() {
                 setEnseignants(enseignantsData);
 
                 const modulesData = await apiRequest('/Modules', 'GET');
-                setModules(modulesData);
+                setModules(modulesData["result"]);
             } catch (error) {
                 alert('Erreur lors du chargement des données : ' + error.message);
             }

@@ -1,78 +1,147 @@
-.modifier-container {
+/* modifierinfo.css */
+
+.profile-edit {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    background-color: #f6f0f0;
-    padding: 20px;
-    width: 100vw;
-    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 2rem;
 }
 
-.modifier-form {
-    background-color: rgba(185, 179, 179, 0.758);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.667);
+.edit-container {
     width: 100%;
     max-width: 500px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+}
+
+.edit-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.edit-header h1 {
+    font-size: 1.75rem;
+    color: #212529;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.edit-header p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.edit-form {
     display: flex;
     flex-direction: column;
-
+    gap: 1.25rem;
 }
 
-.modifier-form label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    margin-top: 20px;
-    color: black;
-    text-align: center;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.modifier-form input {
-    padding: 12px;
-    border: 1px solid #000000;
+.input-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #495057;
+    font-weight: 500;
+}
+
+.input-icon {
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+.text-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
     border-radius: 8px;
-    font-size: 16px;
-    background-color: white;
-    text-align: center;
-    color: black;
+    font-size: 1rem;
+    transition: all 0.2s ease;
 }
 
-.modifier-form button {
-    margin-top: 30px;
-    padding: 14px;
-    background-color: #4f56e6;
-    color: rgb(185, 176, 176);
-    font-size: 18px;
+.text-input:focus {
+    outline: none;
+    border-color: #4dabf7;
+    box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #228be6;
+    color: white;
     border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.modifier-form button:hover {
-    background-color: #2733d1;
-}
-
-h1 {
-    margin-bottom: 30px;
-    font-size: 32px;
-    color: #333;
-}
-
-.modifier-form select {
-    padding: 12px;
-    border: 1px solid #000000;
     border-radius: 8px;
-    font-size: 16px;
-    background-color: white;
-    text-align: center;
-    color: black;
-    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
 }
-.modifier-form select:hover {
-    background-color: #e6e6e6;
-    border-color: #4f56e6;
+
+.submit-btn:hover {
+    background-color: #1c7ed6;
+}
+
+.submit-btn:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+}
+
+.btn-spinner {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+.success-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #ebfbee;
+    border-radius: 8px;
+    color: #2b8a3e;
+    font-weight: 500;
+}
+
+.success-icon {
+    color: #2b8a3e;
+    font-size: 1.2rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .edit-container {
+        padding: 1.5rem;
+    }
+    
+    .edit-header h1 {
+        font-size: 1.5rem;
+    }
 }

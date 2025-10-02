@@ -1,57 +1,105 @@
-import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
-import '../src/styleCss/Navbar.css'
+import '../src/styleCss/Navbar.css';
+import { useContext, useEffect, useState, useRef } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../utils/fetchapi";
+import { FaBars } from "react-icons/fa";
 
-export function Navbar() {
+export function Navbar({ toggleSidebar, sidebarOpen }) {
     const { user } = useContext(AuthContext);
-    console.log(user)
-    const email = user.email;
+    const navigate = useNavigate();
+    const [unreadnotifications, setUnreadnotificaions] = useState(0);
+    const [unreadalerts, setUnreadalerts] = useState(0);
+    const [animationComplete, setAnimationComplete] = useState(false);
+    const logoRef = useRef(null);
+
+    const nbrNotificationnonlu = async () => {
+        const response = await apiRequest(`/Notifications/unread/${user.userId}`, 'GET');
+        setUnreadnotificaions(response.unread);
+    };
+
+    const nbrAlertsnolu = async () => {
+        const response = await apiRequest(`/Alerts/unread/${user.userId}`, 'GET');
+        setUnreadalerts(response.unread);
+    };
+
+    useEffect(() => {
+        nbrAlertsnolu();
+    }, []);
+
+    useEffect(() => {
+        nbrNotificationnonlu();
+    }, []);
+
+    useEffect(() => {
+        if (!animationComplete && logoRef.current) {
+            const timer = setTimeout(() => {
+                setAnimationComplete(true);
+            }, 3000); // Durée suffisante pour toutes les animations
+
+            return () => clearTimeout(timer);
+        }
+    }, [animationComplete]);
+
+    const ShowAlerts = async () => {
+        const data = await apiRequest(`/Alerts/${user.email}`, 'GET');
+        navigate('User-Alerts', { state: { alerts: data } });
+    };
+
+    const ShowNotifications = async () => {
+        const data = await apiRequest(`/Notifications/${user.email}`, 'GET');
+        navigate('User-notifications', { state: { notifications: data } });
+    };
+
    
-    const navigate = useNavigate()
+    // Créer les lettres animées
+    const renderAnimatedLogo = () => {
+        const letters = "SmartMoodle".split('');
+        return letters.map((letter, index) => (
+            <span
+                key={index}
+                className={`logo-letter ${!animationComplete ? 'falling' : 'visible'}`}
+                style={{
+                    color: 'white',
+                    animationDelay: `${index * 0.1}s`,
+                    
+                }}
+            >
+                {letter}
+            </span>
+        ));
+    };
 
-    const ShowAlerts = async ()=>{
-      const data = await apiRequest(`/Alerts/${email}`, 'GET')
-      navigate('User-Alerts', { state: { alerts: data } });
-    }
-
-    const ShowNotifications = async ()=>{
-      const data = await apiRequest(`/Notifications/${email}`, 'GET')
-      navigate('User-notifications', {state: {notifications : data}})
-    }
-
-
-  
     return (
-      <div className="Navbar-container">
-        <div className="something">
-          <div  style={{ cursor: "pointer" }}>
-            <img
-              src="https://t3.ftcdn.net/jpg/03/53/11/00/360_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
-              alt="something"
-            />
-            <h3 style={{color: 'black'}}>{user.prenom} {user.nom}</h3>
-          </div>
-          <span onClick={ShowAlerts}>🚨</span>
-          <br /><br />
-          <span onClick={ShowNotifications}>🔔</span>
-        </div>
-        <div style={{ fontWeight: 'bold', fontSize: '24px', display: 'flex', gap: '2px' , marginRight: '50px'}}>
-                <span style={{ color: '#1abc9c' }}>S</span>
-                <span style={{ color: '#16a085' }}>m</span>
-                <span style={{ color: '#3498db' }}>a</span>
-                <span style={{ color: '#2980b9' }}>r</span>
-                <span style={{ color: '#9b59b6' }}>t</span>
-                <span style={{ color: '#f39c12' }}>M</span>
-                <span style={{ color: '#e67e22' }}>o</span>
-                <span style={{ color: '#e74c3c' }}>o</span>
-                <span style={{ color: '#c0392b' }}>d</span>
-                <span style={{ color: '#2ecc71' }}>l</span>
-                <span style={{ color: '#27ae60' }}>e</span>
-        </div>
+        <header className="nav-header">
+            <div className="nav-left-section">
+                <button className="sidebar-toggle" onClick={toggleSidebar}>
+                    <FaBars />
+                    <span className="tooltip">{sidebarOpen ? 'Masquer le menu' : 'Afficher le menu'}</span>
+                </button>
+                <div className="nav-user-info">
+                    <img
+                        src="https://t3.ftcdn.net/jpg/03/53/11/00/360_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"
+                        alt="User"
+                        className="nav-user-avatar"
+                    />
+                    <span className="nav-user-name">{user.prenom} {user.nom}</span>
+                </div>
+                <div className="nav-icons-container">
+                    <button className="nav-icon-btn nav-alert-btn" onClick={ShowAlerts}>
+                        {unreadalerts !== 0 && <span className="nav-badge">{unreadalerts}</span>}
+                        <i className="nav-icon">🚨</i>
+                    </button>
+                    <button className="nav-icon-btn nav-notify-btn" onClick={ShowNotifications}>
+                        {unreadnotifications !== 0 && <span className="nav-badge">{unreadnotifications}</span>}
+                        <i className="nav-icon">🔔</i>
+                    </button>
+                </div>
+            </div>
 
-      </div>
+            <div className="nav-brand" ref={logoRef}>
+                <span className="nav-logo">{renderAnimatedLogo()}</span>
+            </div>
+        </header>
     );
-  }
-  
+}

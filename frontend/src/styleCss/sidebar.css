@@ -1,76 +1,171 @@
-.sideBarAdmin {
-    font-size: 1.5vw;
-    background-color: rgb(195, 197, 197);
-    margin: 0;
+.sb-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
     height: 100vh;
-    text-align: center;
-    color: black;
-    width: 30vw;
-    min-width: 250px;
-    max-width: 400px;
-    padding: 2vh 1vw;
-    box-sizing: border-box;
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: width 0.3s ease;
+    min-width: 250px;
+    max-width: 500px;
 }
 
-/* Image de profil */
-.profile-img {
-    width: 60%;
-    max-width: 200px;
-    aspect-ratio: 1 / 1;
+.sb-resize-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: col-resize;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+    z-index: 101;
+}
+
+.sb-resize-handle:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.sb-sidebar-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sb-profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sb-profile-img {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    margin: 2vh auto;
-    display: block;
+    border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Conteneur des deux boutons */
-.sideBarAdmin .button-container {
+.sb-user-info {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    margin-top: 3vh;
+    flex-direction: column;
+    gap: 8px;
 }
 
-/* Styles des boutons */
-.sideBarAdmin button {
-    font-size: 1vw;
-    padding: 10px 15px;
-    border-radius: 20px;
+.sb-sidebar h3 {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    text-align: left;
+    padding: 0 10px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.sb-info-label {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.sb-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sb-button-container button {
+    padding: 12px 15px;
     border: none;
-    background-color: #004080;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
+    font-size: 14px;
     cursor: pointer;
-    transition: 0.3s;
-    min-width: 100px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
 }
 
-.sideBarAdmin button:hover {
-    background-color: #0059b3;
+.sb-button-container button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive mobile */
+.sb-btn-text {
+    white-space: normal;
+    word-break: break-word;
+    flex: 1;
+}
+
+.sb-options-btn {
+    background-color: rgba(67, 97, 238, 0.3) !important;
+    justify-content: space-between;
+}
+
+.sb-options-btn .sb-arrow {
+    transition: transform 0.3s ease;
+}
+
+.sb-options-btn .sb-arrow.sb-up {
+    transform: rotate(180deg);
+}
+
+.sb-options-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin: 5px 0 15px 0;
+}
+
+.sb-options-modal button {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.sb-options-modal button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sb-edit-btn {
+    margin-top: 10px !important;
+}
+
+.sb-logout-btn {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    color: #ef4444 !important;
+    margin-top: 20px !important;
+}
+
+.sb-logout-btn:hover {
+    background-color: rgba(239, 68, 68, 0.3) !important;
+}
+
 @media (max-width: 768px) {
-    .sideBarAdmin {
-        width: 90vw;
-        font-size: 4vw;
+    .sb-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
     }
 
-    .profile-img {
-        width: 50%;
-    }
-
-    .sideBarAdmin button {
-        font-size: 3vw;
-        padding: 8px 10px;
-    }
-
-    .sideBarAdmin .button-container {
-        flex-direction: column;
-        gap: 10px;
+    .sb-sidebar.sb-open {
+        transform: translateX(0);
     }
 }

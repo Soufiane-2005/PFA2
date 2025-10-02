@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import '../../src/styleCss/modifierinfo.css';
 import { apiRequest } from '../../utils/fetchapi';
+import '../../src/styleCss/Enseignant.css'
 
 export function Enseignant() {
     const [action, setAction] = useState('ajouter');
@@ -22,6 +22,13 @@ export function Enseignant() {
                     password
                 });
                 alert(data.message);
+                // Réinitialiser le formulaire après soumission
+                if (data.success) {
+                    setNom('');
+                    setPrenom('');
+                    setEmail('');
+                    setPassword('');
+                }
 
             } else if (action === 'modifier') {
                 const data = await apiRequest('/ModifierEnseignant', 'PUT', {
@@ -31,10 +38,21 @@ export function Enseignant() {
                     email
                 });
                 alert(data.message);
+                if (data.success) {
+                    setNom('');
+                    setPrenom('');
+                    setAncienEmail('');
+                    setEmail('');
+                }
 
             } else if (action === 'supprimer') {
+                console.log("hello mr soufiane")
                 const data = await apiRequest(`/SupprimerEnseignant/${email}`, 'DELETE');
+                console.log(data)
                 alert(data.message);
+                if (data.success) {
+                    setEmail('');
+                }
             }
         } catch (error) {
             alert(error);
@@ -43,100 +61,136 @@ export function Enseignant() {
 
     return (
         <div className="modifier-container">
-            <h1>Ajouter, Modifier, Supprimer enseignant</h1>
+            <h1>Gestion des Enseignants</h1>
             <form className="modifier-form" onSubmit={handleSubmit}>
+                <div>
+                    <label>Action :</label>
+                    <select 
+                        value={action} 
+                        onChange={(e) => setAction(e.target.value)}
+                        className="action-select"
+                    >
+                        <option value="ajouter">Ajouter un enseignant</option>
+                        <option value="modifier">Modifier un enseignant</option>
+                        <option value="supprimer">Supprimer un enseignant</option>
+                    </select>
+                </div>
 
-                <label>Action :</label>
-                <select value={action} onChange={(e) => setAction(e.target.value)}>
-                    <option value="ajouter">Ajouter</option>
-                    <option value="modifier">Modifier</option>
-                    <option value="supprimer">Supprimer</option>
-                </select>
+                <div className={`action-section action-transition`}>
+                    {action === 'ajouter' && (
+                        <>
+                            <div>
+                                <label>Nom: </label>
+                                <input
+                                    type="text"
+                                    value={nom}
+                                    onChange={(e) => setNom(e.target.value)}
+                                    placeholder="Entrez le nom de famille"
+                                />
+                            </div>
 
-                {action === 'ajouter' && (
-                    <>
-                        <label>Nom: </label>
-                        <input
-                            type="text"
-                            value={nom}
-                            onChange={(e)=>setNom(e.target.value)}
-                        />
+                            <div>
+                                <label>Prénom :</label>
+                                <input
+                                    type="text"
+                                    value={prenom}
+                                    onChange={(e) => setPrenom(e.target.value)}
+                                    required
+                                    placeholder="Entrez le prénom"
+                                />
+                            </div>
 
-                        <label>Prénom :</label>
-                        <input
-                            type="text"
-                            value={prenom}
-                            onChange={(e) => setPrenom(e.target.value)}
-                            required
-                        />
+                            <div>
+                                <label>Email :</label>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    placeholder="exemple@institution.edu"
+                                />
+                            </div>
 
-                        <label>Email :</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
+                            <div>
+                                <label>Mot de passe :</label>
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    placeholder="Créez un mot de passe"
+                                />
+                            </div>
+                        </>
+                    )}
 
-                        <label>Mot de passe :</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </>
-                )}
+                    {action === 'modifier' && (
+                        <>
+                            <div>
+                                <label>Nom :</label>
+                                <input
+                                    type="text"
+                                    value={nom}
+                                    onChange={(e) => setNom(e.target.value)}
+                                    required
+                                    placeholder="Nouveau nom"
+                                />
+                            </div>
 
-                {action === 'modifier' && (
-                    <>
-                        <label>Nom :</label>
-                        <input
-                            type="text"
-                            value={nom}
-                            onChange={(e) => setNom(e.target.value)}
-                            required
-                        />
+                            <div>
+                                <label>Prénom :</label>
+                                <input
+                                    type="text"
+                                    value={prenom}
+                                    onChange={(e) => setPrenom(e.target.value)}
+                                    required
+                                    placeholder="Nouveau prénom"
+                                />
+                            </div>
 
-                        <label>Prénom :</label>
-                        <input
-                            type="text"
-                            value={prenom}
-                            onChange={(e) => setPrenom(e.target.value)}
-                            required
-                        />
+                            <div>
+                                <label>Email précédent :</label>
+                                <input
+                                    type="email"
+                                    value={ancienEmail}
+                                    onChange={(e) => setAncienEmail(e.target.value)}
+                                    required
+                                    placeholder="Email actuel de l'enseignant"
+                                />
+                            </div>
 
-                        <label>Email précédent :</label>
-                        <input
-                            type="email"
-                            value={ancienEmail}
-                            onChange={(e) => setAncienEmail(e.target.value)}
-                            required
-                        />
+                            <div>
+                                <label>Nouvel email :</label>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    placeholder="Nouvel email"
+                                />
+                            </div>
+                        </>
+                    )}
 
-                        <label>Nouvel email :</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </>
-                )}
+                    {action === 'supprimer' && (
+                        <div>
+                            <label>Email de l'enseignant à supprimer :</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                placeholder="Email de l'enseignant"
+                            />
+                        </div>
+                    )}
+                </div>
 
-                {action === 'supprimer' && (
-                    <>
-                        <label>Email :</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </>
-                )}
-
-                <button type="submit">Soumettre</button>
+                <button type="submit">
+                    {action === 'ajouter' && 'Ajouter'}
+                    {action === 'modifier' && 'Modifier'}
+                    {action === 'supprimer' && 'Supprimer'}
+                </button>
             </form>
         </div>
     );
